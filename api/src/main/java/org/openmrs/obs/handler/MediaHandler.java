@@ -32,7 +32,7 @@ import org.slf4j.LoggerFactory;
  * @see org.openmrs.util.OpenmrsConstants#GLOBAL_PROPERTY_COMPLEX_OBS_DIR
  * @since 1.12
  */
-public class MediaHandler extends AbstractHandler implements ComplexObsHandler {
+public class MediaHandler extends NonBinaryAbstractHandler implements ComplexObsHandler {
 	
 	/** Views supported by this handler */
 	private static final String[] supportedViews = { ComplexObsHandler.RAW_VIEW, };
