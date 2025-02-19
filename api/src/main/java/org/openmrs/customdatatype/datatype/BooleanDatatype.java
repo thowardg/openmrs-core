@@ -10,7 +10,7 @@
 package org.openmrs.customdatatype.datatype;
 
 import org.apache.commons.lang3.StringUtils;
-import org.openmrs.customdatatype.SerializingCustomDatatype;
+import org.openmrs.customdatatype.NonTextCustomDataTypeInterface;
 import org.springframework.stereotype.Component;
 
 /**
@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
  * @since 1.9
  */
 @Component
-public class BooleanDatatype extends SerializingCustomDatatype<Boolean> {
+public class BooleanDatatype extends NonTextCustomDataTypeInterface<Boolean> {
 	
 	/**
 	 * @see org.openmrs.customdatatype.SerializingCustomDatatype#serialize(java.lang.Object)

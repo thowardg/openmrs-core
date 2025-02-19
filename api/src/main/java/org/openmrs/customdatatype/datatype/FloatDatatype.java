@@ -10,6 +10,7 @@
 package org.openmrs.customdatatype.datatype;
 
 import org.apache.commons.lang3.StringUtils;
+import org.openmrs.customdatatype.NonTextCustomDataTypeInterface;
 import org.openmrs.customdatatype.SerializingCustomDatatype;
 import org.springframework.stereotype.Component;
 
@@ -18,7 +19,7 @@ import org.springframework.stereotype.Component;
  * @since 2.0
  */
 @Component
-public class FloatDatatype extends SerializingCustomDatatype<Float> {
+public class FloatDatatype extends NonTextCustomDataTypeInterface<Float> {
 
 	/**
 	 * @see SerializingCustomDatatype#serialize(Object)
