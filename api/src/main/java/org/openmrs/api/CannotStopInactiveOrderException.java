@@ -14,7 +14,7 @@ package org.openmrs.api;
  * 
  * @since 2.1
  */
-public class CannotStopInactiveOrderException extends OrderEntryException {
+public class CannotStopInactiveOrderException extends StopOrderSuperclass {
 	
 	public static final long serialVersionUID = 22121214L;
 	
