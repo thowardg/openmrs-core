@@ -9,11 +9,11 @@
  */
 package org.openmrs.customdatatype.datatype;
 
-import org.openmrs.customdatatype.SerializingCustomDatatype;
+import org.openmrs.customdatatype.TextCustomDatatypeInterface;
 import org.springframework.stereotype.Component;
 
 @Component
-public class SpecifiedTextOptionsDatatype extends SerializingCustomDatatype<String> {
+public class SpecifiedTextOptionsDatatype extends TextCustomDatatypeInterface {
 	
 	/**
 	 * @see org.openmrs.customdatatype.SerializingCustomDatatype#serialize(java.lang.Object)
