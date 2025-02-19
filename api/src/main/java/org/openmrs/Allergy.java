@@ -39,7 +39,7 @@ import org.openmrs.util.OpenmrsUtil;
 @Entity
 @Table(name = "allergy")
 @Audited
-public class Allergy extends BaseFormRecordableOpenmrsData {
+public class Allergy extends IllnessBaseForm {
 	
 	public static final long serialVersionUID = 1;
 	
