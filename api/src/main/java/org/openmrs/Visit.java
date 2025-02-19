@@ -32,8 +32,6 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.BatchSize;
 import org.hibernate.envers.Audited;
-import org.openmrs.customdatatype.Customizable;
-
 /**
  * A 'visit' is a contiguous time period where encounters occur between patients and healthcare
  * providers. This can function as a grouper for encounters
@@ -43,7 +41,7 @@ import org.openmrs.customdatatype.Customizable;
 @Entity
 @Table(name = "visit")
 @Audited
-public class Visit extends BaseCustomizableData<VisitAttribute> implements Auditable, Customizable<VisitAttribute> {
+public class Visit extends BaseCustomizableData<VisitAttribute> implements Auditable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
