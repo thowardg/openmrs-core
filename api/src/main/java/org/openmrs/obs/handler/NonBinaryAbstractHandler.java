@@ -1,5 +1,5 @@
 package org.openmrs.obs.handler;
 
-public class NonBinaryAbstractHandler extends AbstractHandler{
+public class NonBinaryAbstractHandler extends AbstractHandler {
 
 }
