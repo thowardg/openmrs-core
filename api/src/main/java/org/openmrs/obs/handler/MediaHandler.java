@@ -20,7 +20,6 @@ import org.openmrs.Obs;
 import org.openmrs.api.APIException;
 import org.openmrs.obs.ComplexData;
 import org.openmrs.obs.ComplexObsHandler;
-import org.openmrs.obs.MediaComplexObsHandkerInterface;
 import org.openmrs.util.OpenmrsUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,7 +32,7 @@ import org.slf4j.LoggerFactory;
  * @see org.openmrs.util.OpenmrsConstants#GLOBAL_PROPERTY_COMPLEX_OBS_DIR
  * @since 1.12
  */
-public class MediaHandler extends NonBinaryAbstractHandler implements MediaComplexObsHandkerInterface {
+public class MediaHandler extends NonBinaryAbstractHandler implements ComplexObsHandler {
 	
 	/** Views supported by this handler */
 	private static final String[] supportedViews = { ComplexObsHandler.RAW_VIEW, };
