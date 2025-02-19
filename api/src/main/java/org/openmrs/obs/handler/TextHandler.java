@@ -24,6 +24,7 @@ import org.openmrs.Obs;
 import org.openmrs.api.APIException;
 import org.openmrs.obs.ComplexData;
 import org.openmrs.obs.ComplexObsHandler;
+import org.openmrs.obs.MediaComplexObsHandkerInterface;
 import org.openmrs.util.OpenmrsUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,7 +36,7 @@ import org.springframework.util.Assert;
  * The in coming data are either char[] or java.io.Reader
  *
  */
-public class TextHandler extends NonBinaryAbstractHandler implements ComplexObsHandler {
+public class TextHandler extends NonBinaryAbstractHandler implements MediaComplexObsHandkerInterface {
 	
 	/** Views supported by this handler */
 	private static final String[] supportedViews = { ComplexObsHandler.TEXT_VIEW, ComplexObsHandler.RAW_VIEW,
