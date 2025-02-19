@@ -12,7 +12,7 @@ package org.openmrs.customdatatype.datatype;
 import java.util.regex.Pattern;
 
 import org.openmrs.customdatatype.InvalidCustomValueException;
-import org.openmrs.customdatatype.TextCustomDatatypeInterface;
+import org.openmrs.customdatatype.SerializingCustomDatatype;
 import org.springframework.stereotype.Component;
 
 /**
@@ -20,7 +20,7 @@ import org.springframework.stereotype.Component;
  * @since 1.9
  */
 @Component
-public class RegexValidatedTextDatatype extends TextCustomDatatypeInterface {
+public class RegexValidatedTextDatatype extends SerializingCustomDatatype<String> {
 	
 	private Pattern pattern;
 	

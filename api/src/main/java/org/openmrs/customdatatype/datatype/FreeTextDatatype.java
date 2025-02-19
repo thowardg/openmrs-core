@@ -9,7 +9,7 @@
  */
 package org.openmrs.customdatatype.datatype;
 
-import org.openmrs.customdatatype.TextCustomDatatypeInterface;
+import org.openmrs.customdatatype.SerializingCustomDatatype;
 import org.springframework.stereotype.Component;
 
 /**
@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
  * @since 1.9
  */
 @Component
-public class FreeTextDatatype extends TextCustomDatatypeInterface {
+public class FreeTextDatatype extends SerializingCustomDatatype<String> {
 	
 	/**
 	 * @see org.openmrs.customdatatype.SerializingCustomDatatype#serialize(java.lang.Object)

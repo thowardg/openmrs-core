@@ -16,7 +16,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.openmrs.api.context.Context;
 import org.openmrs.customdatatype.CustomDatatype;
 import org.openmrs.customdatatype.InvalidCustomValueException;
-import org.openmrs.customdatatype.NonTextCustomDataTypeInterface;
+import org.openmrs.customdatatype.SerializingCustomDatatype;
 import org.springframework.stereotype.Component;
 
 /**
@@ -24,7 +24,7 @@ import org.springframework.stereotype.Component;
  * @since 1.9
  */
 @Component
-public class DateDatatype extends NonTextCustomDataTypeInterface<Date> {
+public class DateDatatype extends SerializingCustomDatatype<Date> {
 
 	static final String DATE_FORMAT = "yyyy-MM-dd";
 	

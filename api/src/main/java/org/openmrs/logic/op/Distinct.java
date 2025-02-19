@@ -16,7 +16,7 @@ package org.openmrs.logic.op;
  * - <code>logicService.parse("EncounterDataSource.ENCOUNTER_KEY").distinct();</code><br>
  * The above will give us a criteria to get all distinct encounter type from the system
  */
-public class Distinct implements StatTransformOpInterface {
+public class Distinct implements TransformOperator {
 	
 	@Override
 	public String toString() {
