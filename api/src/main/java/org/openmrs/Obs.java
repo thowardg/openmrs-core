@@ -64,7 +64,7 @@ import org.slf4j.LoggerFactory;
  * @see Encounter
  */
 @Audited
-public class Obs extends IllnessBaseForm {
+public class Obs extends BaseFormRecordableOpenmrsData {
 	
 	/**
 	 * @since 2.1.0

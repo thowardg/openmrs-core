@@ -42,7 +42,7 @@ import java.util.Date;
 @Entity
 @Table(name = "conditions")
 @Audited
-public class Condition extends BaseFormRecordableOpenmrsData {
+public class Condition extends IllnessBaseForm {
 	
 	private static final long serialVersionUID = 1L;
 	
