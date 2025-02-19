@@ -29,7 +29,7 @@ import org.openmrs.api.context.Context;
  * @since 1.9
  */
 @Handler(supports = Visit.class)
-public class VisitVoidHandler implements VoidHandler<Visit> {
+public class VisitVoidHandler implements VoidHandlerExtraInterface<Visit> {
 	
 	@Override
 	public void handle(Visit voidableObject, User voidingUser, Date voidedDate, String voidReason) {

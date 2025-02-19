@@ -30,7 +30,7 @@ import org.openmrs.aop.RequiredDataAdvice;
  * @since 1.5
  */
 @Handler(supports = { Patient.class, Encounter.class, Obs.class, Cohort.class, Order.class }, order = 1 /* low order so this is run first */)
-public class RequireVoidReasonVoidHandler implements VoidHandler<Voidable> {
+public class RequireVoidReasonVoidHandler implements VoidHandlerExtraInterface<Voidable> {
 	
 	/**
 	 * Validates that the voidReason is non-null and non-empty for supported objects
