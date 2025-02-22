@@ -18,7 +18,6 @@ import javax.persistence.MappedSuperclass;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.envers.Audited;
-import org.hibernate.search.annotations.Field;
 
 /**
  * In OpenMRS, we distinguish between data and metadata within our data model. Data (as opposed to
@@ -48,7 +47,6 @@ public abstract class BaseOpenmrsData extends BaseOpenmrsObject implements Openm
 	private Date dateChanged;
 	
 	@Column(name = "voided", nullable = false)
-	@Field
 	private Boolean voided = Boolean.FALSE;
 	
 	@Column(name = "date_voided")
