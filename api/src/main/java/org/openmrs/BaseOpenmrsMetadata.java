@@ -18,6 +18,7 @@ import javax.persistence.MappedSuperclass;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.envers.Audited;
+import org.hibernate.search.annotations.Field;
 
 /**
  * In OpenMRS, we distinguish between data and metadata within our data model. Metadata represent
@@ -34,6 +35,7 @@ public abstract class BaseOpenmrsMetadata extends BaseOpenmrsObject implements O
 	
 	//***** Properties *****
 	@Column(name = "name", nullable = false, length = 255)
+	@Field
 	private String name;
 	
 	@Column(name = "description", length = 255)
@@ -54,6 +56,7 @@ public abstract class BaseOpenmrsMetadata extends BaseOpenmrsObject implements O
 	private Date dateChanged;
 	
 	@Column(name = "retired", nullable = false)
+	@Field
 	private Boolean retired = Boolean.FALSE;
 	
 	@Column(name = "date_retired")
