@@ -104,7 +104,7 @@ public class AbstractHandler {
 	 * @see org.openmrs.obs.ComplexObsHandler#getObs(Obs, String)
 	 */
 	public Obs getObs(Obs obs, String view) {
-		File file = BinaryDataHandler.getComplexDataFile(obs);
+		File file = getComplexDataFile(obs);
 		log.debug("value complex: " + obs.getValueComplex());
 		log.debug("file path: " + file.getAbsolutePath());
 		ComplexData complexData = null;
