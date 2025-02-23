@@ -81,7 +81,6 @@ import org.openmrs.Obs;
 import org.openmrs.PersonAttributeType;
 import org.openmrs.Program;
 import org.openmrs.ProgramWorkflowState;
-import org.openmrs.User;
 import org.openmrs.annotation.AddOnStartup;
 import org.openmrs.annotation.HasAddOnStartupPrivileges;
 import org.openmrs.annotation.Logging;
@@ -1480,53 +1479,6 @@ public class OpenmrsUtil {
 		}
 		
 		return false;
-	}
-	
-	/**
-	 * Gets an out File object. If date is not provided, the current timestamp is used. If user is
-	 * not provided, the user id is not put into the filename. Assumes dir is already created
-	 * 
-	 * @param dir directory to make the random filename in
-	 * @param date optional Date object used for the name
-	 * @param user optional User creating this file object
-	 * @return file new file that is able to be written to
-	 */
-	public static File getOutFile(File dir, Date date, User user) {
-		Random gen = new Random();
-		File outFile;
-		do {
-			// format to print date in filename
-			DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd-HHmm-ssSSS");
-			
-			// use current date if none provided
-			if (date == null) {
-				date = new Date();
-			}
-			
-			StringBuilder filename = new StringBuilder();
-			
-			// the start of the filename is the time so we can do some sorting
-			filename.append(dateFormat.format(date));
-			
-			// insert the user id if they provided it
-			if (user != null) {
-				filename.append("-");
-				filename.append(user.getUserId());
-				filename.append("-");
-			}
-			
-			// the end of the filename is a randome number between 0 and 10000
-			filename.append(gen.nextInt() * 10000);
-			filename.append(".xml");
-			
-			outFile = new File(dir, filename.toString());
-			
-			// set to null to avoid very minimal possiblity of an infinite loop
-			date = null;
-			
-		} while (outFile.exists());
-		
-		return outFile;
 	}
 	
 	/**
