@@ -43,7 +43,7 @@ public class ImplementationIdValidator implements Validator {
 		ImplementationId implId = (ImplementationId) obj;
 		char[] illegalChars = { '^', '|' };
 		if (implId == null) {
-			throw new APIException("ImplementationId.null", (Object[]) null);
+			throw new APIException("ImplementationId.null");
 		} else {
 			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "ImplementationId.name.empty");
 			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "implementationId", "ImplementationId.implementationId.empty");

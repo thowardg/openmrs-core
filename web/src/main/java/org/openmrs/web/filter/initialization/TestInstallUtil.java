@@ -266,7 +266,7 @@ public class TestInstallUtil {
 		if (connection.getResponseCode() == HttpURLConnection.HTTP_UNAUTHORIZED) {
 			throw new APIAuthenticationException("Invalid username or password");
 		} else if (connection.getResponseCode() == HttpURLConnection.HTTP_INTERNAL_ERROR) {
-			throw new APIException("error.occurred.on.remote.server", (Object[]) null);
+			throw new APIException("error.occurred.on.remote.server");
 		}
 		
 		return connection.getInputStream();

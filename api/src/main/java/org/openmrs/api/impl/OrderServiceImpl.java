@@ -363,7 +363,7 @@ public class OrderServiceImpl extends BaseOpenmrsService implements OrderService
 			field.set(order, value);
 		}
 		catch (Exception e) {
-			throw new APIException("Order.failed.set.property", new Object[] { propertyName, order }, e);
+			throw new APIException("Order.failed.set.property", e);
 		}
 		finally {
 			if (field != null && isAccessible != null) {

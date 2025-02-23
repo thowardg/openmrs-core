@@ -25,7 +25,7 @@ public class MissingRequiredPropertyException extends APIException {
 	}
 	
 	public MissingRequiredPropertyException(String messageKey, Object[] parameters) {
-		super(messageKey, parameters);
+		super(messageKey);
 	}
 	
 	/**

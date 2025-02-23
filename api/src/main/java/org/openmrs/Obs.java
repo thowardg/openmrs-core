@@ -481,7 +481,7 @@ public class Obs extends BaseFormRecordableOpenmrsData {
 		// a quick sanity check to make sure someone isn't adding
 		// itself to the group
 		if (member.equals(this)) {
-			throw new APIException("Obs.error.groupCannotHaveItselfAsAMentor", new Object[] { this, member });
+			throw new APIException("Obs.error.groupCannotHaveItselfAsAMentor");
 		}
 		
 		member.setObsGroup(this);

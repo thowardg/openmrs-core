@@ -27,7 +27,7 @@ public class OrderEntryException extends APIException {
 	}
 	
 	public OrderEntryException(String messageKey, Object[] parameters) {
-		super(messageKey, parameters);
+		super(messageKey);
 	}
 	
 }

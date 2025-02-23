@@ -95,8 +95,7 @@ public class SimpleDosingInstructions extends BaseDosingInstructions {
 	@Override
 	public DosingInstructions getDosingInstructions(DrugOrder order) {
 		if (!order.getDosingType().equals(this.getClass())) {
-			throw new APIException("DrugOrder.error.dosingTypeIsMismatched", new Object[] { this.getClass().getName(),
-			        order.getDosingType() });
+			throw new APIException("DrugOrder.error.dosingTypeIsMismatched");
 		}
 		SimpleDosingInstructions simpleDosingInstructions = new SimpleDosingInstructions();
 		simpleDosingInstructions.setDose(order.getDose());

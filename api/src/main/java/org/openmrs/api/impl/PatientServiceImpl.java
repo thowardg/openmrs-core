@@ -463,7 +463,7 @@ public class PatientServiceImpl extends BaseOpenmrsService implements PatientSer
 	        throws APIException {
 		checkIfPatientIdentifierTypesAreLocked();
 		if (reason == null || reason.length() < 1) {
-			throw new APIException("Patient.identifier.retire.reason", (Object[]) null);
+			throw new APIException("Patient.identifier.retire.reason");
 		}
 		
 		patientIdentifierType.setRetired(true);
@@ -532,7 +532,7 @@ public class PatientServiceImpl extends BaseOpenmrsService implements PatientSer
 	public List<Patient> getDuplicatePatientsByAttributes(List<String> attributes) throws APIException {
 		
 		if (attributes == null || attributes.isEmpty()) {
-			throw new APIException("Patient.no.attribute", (Object[]) null);
+			throw new APIException("Patient.no.attribute");
 		}
 		
 		return dao.getDuplicatePatientsByAttributes(attributes);
@@ -569,7 +569,7 @@ public class PatientServiceImpl extends BaseOpenmrsService implements PatientSer
 		        + notPreferred.getPatientId());
 		if (preferred.getPatientId().equals(notPreferred.getPatientId())) {
 			log.debug("Merge operation cancelled: Cannot merge user" + preferred.getPatientId() + " to self");
-			throw new APIException("Patient.merge.cancelled", new Object[] { preferred.getPatientId() });
+			throw new APIException("Patient.merge.cancelled");
 		}
 		requireNoActiveOrderOfSameType(preferred,notPreferred);
 		PersonMergeLogData mergedData = new PersonMergeLogData();
@@ -971,13 +971,13 @@ public class PatientServiceImpl extends BaseOpenmrsService implements PatientSer
 	public void exitFromCare(Patient patient, Date dateExited, Concept reasonForExit) throws APIException {
 		
 		if (patient == null) {
-			throw new APIException("Patient.invalid.care", (Object[]) null);
+			throw new APIException("Patient.invalid.care");
 		}
 		if (dateExited == null) {
-			throw new APIException("Patient.no.valid.dateExited", (Object[]) null);
+			throw new APIException("Patient.no.valid.dateExited");
 		}
 		if (reasonForExit == null) {
-			throw new APIException("Patient.no.valid.reasonForExit", (Object[]) null);
+			throw new APIException("Patient.no.valid.reasonForExit");
 		}
 		
 		// need to create an observation to represent this (otherwise how
@@ -995,13 +995,13 @@ public class PatientServiceImpl extends BaseOpenmrsService implements PatientSer
 	private void saveReasonForExitObs(Patient patient, Date exitDate, Concept cause) throws APIException {
 		
 		if (patient == null) {
-			throw new APIException("Patient.null", (Object[]) null);
+			throw new APIException("Patient.null");
 		}
 		if (exitDate == null) {
-			throw new APIException("Patient.exit.date.null", (Object[]) null);
+			throw new APIException("Patient.exit.date.null");
 		}
 		if (cause == null) {
-			throw new APIException("Patient.cause.null", (Object[]) null);
+			throw new APIException("Patient.cause.null");
 		}
 		
 		// need to make sure there is an Obs that represents the patient's
@@ -1091,13 +1091,13 @@ public class PatientServiceImpl extends BaseOpenmrsService implements PatientSer
 			
 		} else {
 			if (patient == null) {
-				throw new APIException("Patient.invalid.dead", (Object[]) null);
+				throw new APIException("Patient.invalid.dead");
 			}
 			if (dateDied == null) {
-				throw new APIException("Patient.no.valid.dateDied", (Object[]) null);
+				throw new APIException("Patient.no.valid.dateDied");
 			}
 			if (causeOfDeath == null) {
-				throw new APIException("Patient.no.valid.causeOfDeath", (Object[]) null);
+				throw new APIException("Patient.no.valid.causeOfDeath");
 			}
 		}
 	}
@@ -1110,13 +1110,13 @@ public class PatientServiceImpl extends BaseOpenmrsService implements PatientSer
 	public void saveCauseOfDeathObs(Patient patient, Date deathDate, Concept cause, String otherReason) throws APIException {
 		
 		if (patient == null) {
-			throw new APIException("Patient.null", (Object[]) null);
+			throw new APIException("Patient.null");
 		}
 		if (deathDate == null) {
-			throw new APIException("Patient.death.date.null", (Object[]) null);
+			throw new APIException("Patient.death.date.null");
 		}
 		if (cause == null) {
-			throw new APIException("Patient.cause.null", (Object[]) null);
+			throw new APIException("Patient.cause.null");
 		}
 		
 		if (!patient.getDead()) {
@@ -1347,7 +1347,7 @@ public class PatientServiceImpl extends BaseOpenmrsService implements PatientSer
 	public PatientIdentifier voidPatientIdentifier(PatientIdentifier patientIdentifier, String reason) throws APIException {
 		
 		if (patientIdentifier == null || StringUtils.isBlank(reason)) {
-			throw new APIException("Patient.identifier.cannot.be.null", (Object[]) null);
+			throw new APIException("Patient.identifier.cannot.be.null");
 		}
 		return Context.getPatientService().savePatientIdentifier(patientIdentifier);
 		
@@ -1380,7 +1380,7 @@ public class PatientServiceImpl extends BaseOpenmrsService implements PatientSer
 		        || patientIdentifier.getIdentifierType() == null
 		        || StringUtils.isBlank(patientIdentifier.getIdentifier())
 		        || (locationBehavior == PatientIdentifierType.LocationBehavior.REQUIRED && patientIdentifier.getLocation() == null)) {
-			throw new APIException("Patient.identifier.null", (Object[]) null);
+			throw new APIException("Patient.identifier.null");
 		}
 		if (patientIdentifier.getPatientIdentifierId() == null) {
 			Context.requirePrivilege(PrivilegeConstants.ADD_PATIENT_IDENTIFIERS);

@@ -26,7 +26,7 @@ public class UnchangeablePropertyException extends APIException {
 	}
 	
 	public UnchangeablePropertyException(String messageKey, Object[] parameters) {
-		super(messageKey, parameters);
+		super(messageKey);
 	}
 	
 	/**

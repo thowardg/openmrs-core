@@ -197,7 +197,7 @@ public class OrderType extends BaseChangeableOpenmrsMetadata {
 		}
 		catch (ClassNotFoundException e) {
 			//re throw as a runtime exception
-			throw new APIException("OrderType.failed.load.class", new Object[] { javaClassName }, e);
+			throw new APIException("OrderType.failed.load.class", e);
 		}
 	}
 	

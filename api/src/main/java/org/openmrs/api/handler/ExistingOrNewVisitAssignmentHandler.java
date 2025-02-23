@@ -135,7 +135,7 @@ public class ExistingOrNewVisitAssignmentHandler extends ExistingVisitAssignment
 			}
 			
 			// Reaching here means this encounter type is not in the user's mapping.
-			throw new APIException("GlobalProperty.error.loadVisitType", new Object[] { encounterType.getName() });
+			throw new APIException("GlobalProperty.error.loadVisitType");
 		}
 		
 		return Context.getVisitService().getAllVisitTypes().get(0);

@@ -127,7 +127,7 @@ public class OpenmrsObjectSaveHandler implements SaveHandler<OpenmrsObject> {
 				}
 			}
 			catch (Exception ex) {
-				throw new APIException("failed.change.property.value", new Object[] { property.getName() }, ex);
+				throw new APIException("failed.change.property.value", ex);
 			}
 		}
 	}

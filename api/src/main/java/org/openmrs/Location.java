@@ -497,7 +497,7 @@ public class Location extends BaseCustomizableMetadata<LocationAttribute> implem
 		}
 		
 		if (child.equals(this)) {
-			throw new APIException("Location.cannot.be.its.own.child", (Object[]) null);
+			throw new APIException("Location.cannot.be.its.own.child");
 		}
 		
 		// Traverse all the way up (down?) to the root, then check whether the child is already
@@ -508,7 +508,7 @@ public class Location extends BaseCustomizableMetadata<LocationAttribute> implem
 		}
 		
 		if (isInHierarchy(child, root)) {
-			throw new APIException("Location.hierarchy.loop", new Object[] { child, this });
+			throw new APIException("Location.hierarchy.loop");
 		}
 		
 		child.setParentLocation(this);

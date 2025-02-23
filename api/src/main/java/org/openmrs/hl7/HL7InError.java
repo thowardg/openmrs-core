@@ -108,8 +108,7 @@ public class HL7InError extends HL7QueueItem {
 	 */
 	public void setErrorDetails(String errorDetails) {
 		if (errorDetails != null && errorDetails.length() > MAX_ERROR_DETAILS_LENGTH) {
-			throw new APIException("Hl7inError.error.details.length", new Object[] { errorDetails.length(),
-			        MAX_ERROR_DETAILS_LENGTH });
+			throw new APIException("Hl7inError.error.details.length");
 		}
 		this.errorDetails = errorDetails;
 	}

@@ -1738,8 +1738,7 @@ public class HibernateConceptDAO implements ConceptDAO {
 		if (terms.isEmpty()) {
 			return null;
 		} else if (terms.size() > 1) {
-			throw new APIException("ConceptReferenceTerm.foundMultipleTermsWithNameInSource",
-				new Object[]{name, conceptSource.getName()});
+			throw new APIException("ConceptReferenceTerm.foundMultipleTermsWithNameInSource");
 		}
 		return terms.get(0);
 	}
@@ -1763,8 +1762,7 @@ public class HibernateConceptDAO implements ConceptDAO {
 			}
 			
 			// either more than one unretired concept term or more than one retired concept term
-			throw new APIException("ConceptReferenceTerm.foundMultipleTermsWithCodeInSource",
-			        new Object[] { code, conceptSource.getName() });
+			throw new APIException("ConceptReferenceTerm.foundMultipleTermsWithCodeInSource");
 		}
 		
 		return conceptReferenceTerms.get(0);

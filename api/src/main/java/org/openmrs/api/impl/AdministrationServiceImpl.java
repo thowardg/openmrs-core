@@ -169,8 +169,7 @@ public class AdministrationServiceImpl extends BaseOpenmrsService implements Adm
 			if (canViewGlobalProperty(gp)) {
 				return gp.getPropertyValue();
 			} else {
-				throw new APIException("GlobalProperty.error.privilege.required.view", new Object[] {
-					gp.getViewPrivilege().getPrivilege(), propertyName });
+				throw new APIException("GlobalProperty.error.privilege.required.view");
 			}
 		} else {
 			return null;
@@ -239,8 +238,7 @@ public class AdministrationServiceImpl extends BaseOpenmrsService implements Adm
 			if (canViewGlobalProperty(gp)) {
 				return gp;
 			} else {
-				throw new APIException("GlobalProperty.error.privilege.required.view", new Object[] {
-					gp.getViewPrivilege().getPrivilege(), propertyName });
+				throw new APIException("GlobalProperty.error.privilege.required.view");
 			}
 		} else {
 			return null;
@@ -274,8 +272,7 @@ public class AdministrationServiceImpl extends BaseOpenmrsService implements Adm
 		}
 		
 		if (!canEditGlobalProperty(gp)) {
-			throw new APIException("GlobalProperty.error.privilege.required.edit", new Object[] {
-				gp.getEditPrivilege().getPrivilege(), propertyName });
+			throw new APIException("GlobalProperty.error.privilege.required.edit");
 		}
 		
 		gp.setPropertyValue(propertyValue);
@@ -315,8 +312,7 @@ public class AdministrationServiceImpl extends BaseOpenmrsService implements Adm
 	@Override
 	public void purgeGlobalProperty(GlobalProperty globalProperty) throws APIException {
 		if (!canDeleteGlobalProperty(globalProperty)) {
-			throw new APIException("GlobalProperty.error.privilege.required.purge", new Object[] {
-				globalProperty.getDeletePrivilege().getPrivilege(), globalProperty.getProperty() });
+			throw new APIException("GlobalProperty.error.privilege.required.purge");
 		}
 		
 		notifyGlobalPropertyDelete(globalProperty.getProperty());
@@ -349,8 +345,7 @@ public class AdministrationServiceImpl extends BaseOpenmrsService implements Adm
 	public GlobalProperty saveGlobalProperty(GlobalProperty gp) throws APIException {
 
 		if (!canEditGlobalProperty(gp)) {
-			throw new APIException("GlobalProperty.error.privilege.required.edit", new Object[] {
-				gp.getEditPrivilege().getPrivilege(), gp.getProperty() });
+			throw new APIException("GlobalProperty.error.privilege.required.edit");
 		}
 		
 		// only try to save it if the global property has a key
@@ -548,13 +543,13 @@ public class AdministrationServiceImpl extends BaseOpenmrsService implements Adm
 	        throws APIException {
 		
 		if (StringUtils.isEmpty(implementationId)) {
-			throw new APIException("cannot.be.empty", new Object[] { "implementationid" });
+			throw new APIException("cannot.be.empty");
 		}
 		if (StringUtils.isEmpty(description)) {
-			throw new APIException("cannot.be.empty", new Object[] { "description" });
+			throw new APIException("cannot.be.empty");
 		}
 		if (StringUtils.isEmpty(passphrase)) {
-			throw new APIException("cannot.be.empty", new Object[] { "passphrase" });
+			throw new APIException("cannot.be.empty");
 		}
 		
 		// set up the data map to post to the openmrs server
@@ -715,8 +710,7 @@ public class AdministrationServiceImpl extends BaseOpenmrsService implements Adm
 		} else if (canViewGlobalProperty(gp)) {
 			return gp;
 		} else {
-			throw new APIException("GlobalProperty.error.privilege.required.view", new Object[] {
-				gp.getViewPrivilege().getPrivilege(), gp.getProperty() });
+			throw new APIException("GlobalProperty.error.privilege.required.view");
 		}
 	}
 	
@@ -740,11 +734,10 @@ public class AdministrationServiceImpl extends BaseOpenmrsService implements Adm
 			return (T) defaultValue.getClass().getDeclaredConstructor(String.class).newInstance(propVal);
 		}
 		catch (InstantiationException e) {
-			throw new APIException("is.not.able.instantiated", new Object[] { defaultValue.getClass().getName(), propVal },
-			        e);
+			throw new APIException("is.not.able.instantiated", e);
 		}
 		catch (NoSuchMethodException e) {
-			throw new APIException("does.not.have.string.constructor", new Object[] { defaultValue.getClass().getName() }, e);
+			throw new APIException("does.not.have.string.constructor", e);
 		}
 		catch (Exception e) {
 			log.error("Unable to turn value '" + propVal + "' into type " + defaultValue.getClass().getName(), e);
@@ -887,7 +880,7 @@ public class AdministrationServiceImpl extends BaseOpenmrsService implements Adm
 	@Transactional(readOnly = true)
 	public void validate(Object object, Errors errors) throws APIException {
 		if (object == null) {
-			throw new APIException("error.null", (Object[]) null);
+			throw new APIException("error.null");
 		}
 
 		dao.validate(object, errors);

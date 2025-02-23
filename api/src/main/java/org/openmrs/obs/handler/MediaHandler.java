@@ -113,7 +113,7 @@ public class MediaHandler extends NonBinaryAbstractHandler implements ComplexObs
 			out.close();
 		}
 		catch (IOException ioe) {
-			throw new APIException("Obs.error.trying.write.complex", null, ioe);
+			throw new APIException("Obs.error.trying.write.complex", null);
 		}
 		
 		return obs;

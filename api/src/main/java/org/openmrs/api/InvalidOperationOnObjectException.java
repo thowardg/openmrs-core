@@ -31,7 +31,7 @@ public class InvalidOperationOnObjectException extends APIException {
 	}
 	
 	public InvalidOperationOnObjectException(String messageKey, Object[] parameters) {
-		super(messageKey, parameters);
+		super(messageKey);
 	}
 	
 	/**

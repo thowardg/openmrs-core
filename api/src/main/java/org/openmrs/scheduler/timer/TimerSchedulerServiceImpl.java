@@ -423,7 +423,7 @@ public class TimerSchedulerServiceImpl extends BaseOpenmrsService implements Sch
 		
 		TaskDefinition task = getTask(id);
 		if (task.getStarted()) {
-			throw new APIException("Scheduler.timer.task.delete", (Object[]) null);
+			throw new APIException("Scheduler.timer.task.delete");
 		}
 		
 		// delete the task

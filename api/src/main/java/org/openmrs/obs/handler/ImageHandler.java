@@ -143,7 +143,7 @@ public class ImageHandler extends NonBinaryAbstractHandler implements ComplexObs
 			      img = ImageIO.read(bis);
 			    }
 			    catch (IOException e) {
-			      throw new APIException("Obs.error.unable.convert.complex.data", new Object[] { "input stream" }, e);
+			      throw new APIException("Obs.error.unable.convert.complex.data", e);
 			    }
 			}
 		 else if (data instanceof InputStream) {
@@ -154,12 +154,12 @@ public class ImageHandler extends NonBinaryAbstractHandler implements ComplexObs
 				}
 			}
 			catch (IOException e) {
-				throw new APIException("Obs.error.unable.convert.complex.data", new Object[] { "input stream" }, e);
+				throw new APIException("Obs.error.unable.convert.complex.data", e);
 			}
 		}
 		
 		if (img == null) {
-			throw new APIException("Obs.error.cannot.save.complex", new Object[] { obs.getObsId() });
+			throw new APIException("Obs.error.cannot.save.complex");
 		}
 		
 		File outfile = null;
@@ -184,7 +184,7 @@ public class ImageHandler extends NonBinaryAbstractHandler implements ComplexObs
 			if (outfile != null && outfile.length() == 0) {
 				outfile.delete(); // OpenJDK 7 & 8 may leave a 0-byte file when ImageIO.write(..) fails.
 			}
-			throw new APIException("Obs.error.trying.write.complex", null, ioe);
+			throw new APIException("Obs.error.trying.write.complex", null);
 		}
 		
 		return obs;

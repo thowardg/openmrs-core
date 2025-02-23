@@ -360,19 +360,16 @@ public class RequiredDataAdvice implements MethodBeforeAdvice {
 		}
 		catch (IllegalAccessException e) {
 			if (field.isAnnotationPresent(AllowDirectAccess.class)) {
-				throw new APIException("unable.get.field", new Object[] { fieldName, openmrsObject.getClass() });
+				throw new APIException("unable.get.field");
 			} else {
-				throw new APIException(UNABLE_GETTER_METHOD, new Object[] { "use", getterName, fieldName,
-					openmrsObject.getClass() });
+				throw new APIException(UNABLE_GETTER_METHOD);
 			}
 		}
 		catch (InvocationTargetException e) {
-			throw new APIException(UNABLE_GETTER_METHOD, new Object[] { "run", getterName, fieldName,
-				openmrsObject.getClass() });
+			throw new APIException(UNABLE_GETTER_METHOD);
 		}
 		catch (NoSuchMethodException e) {
-			throw new APIException(UNABLE_GETTER_METHOD, new Object[] { "find", getterName, fieldName,
-				openmrsObject.getClass() });
+			throw new APIException(UNABLE_GETTER_METHOD);
 		}
 	}
 	

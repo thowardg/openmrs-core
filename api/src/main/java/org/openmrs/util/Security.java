@@ -61,7 +61,7 @@ public class Security {
 	 */
 	public static boolean hashMatches(String hashedPassword, String passwordToHash) {
 		if (hashedPassword == null || passwordToHash == null) {
-			throw new APIException("password.cannot.be.null", (Object[]) null);
+			throw new APIException("password.cannot.be.null");
 		}
 		
 		return hashedPassword.equals(encodeString(passwordToHash))
@@ -104,7 +104,7 @@ public class Security {
 		catch (NoSuchAlgorithmException e) {
 			// Yikes! Can't encode password...what to do?
 			log.error("Can't encode password because the given algorithm: " + algorithm + " was not found! (fail)", e);
-			throw new APIException("system.cannot.find.encryption.algorithm", null, e);
+			throw new APIException("system.cannot.find.encryption.algorithm", null);
 		}
 
 		return md.digest(input);
@@ -199,7 +199,7 @@ public class Security {
 			result = new String(Base64.getEncoder().encode(encrypted), StandardCharsets.UTF_8);
 		}
 		catch (GeneralSecurityException e) {
-			throw new APIException("could.not.encrypt.text", null, e);
+			throw new APIException("could.not.encrypt.text", null);
 		}
 
 		return result;
@@ -245,7 +245,7 @@ public class Security {
 			decrypted = new String(original, StandardCharsets.UTF_8);
 		}
 		catch (GeneralSecurityException e) {
-			throw new APIException("could.not.decrypt.text", null, e);
+			throw new APIException("could.not.decrypt.text", null);
 		}
 
 		return decrypted;
@@ -281,7 +281,7 @@ public class Security {
 			return Base64.getDecoder().decode(initVectorText);
 		}
 
-		throw new APIException("no.encryption.initialization.vector.found", (Object[]) null);
+		throw new APIException("no.encryption.initialization.vector.found");
 	}
 
 	/**
@@ -313,7 +313,7 @@ public class Security {
 			return Base64.getDecoder().decode(keyText);
 		}
 
-		throw new APIException("no.encryption.secret.key.found", (Object[]) null);
+		throw new APIException("no.encryption.secret.key.found");
 	}
 
 	/**
@@ -330,7 +330,7 @@ public class Security {
 			kgen = KeyGenerator.getInstance(OpenmrsConstants.ENCRYPTION_KEY_SPEC);
 		}
 		catch (NoSuchAlgorithmException e) {
-			throw new APIException("could.not.generate.cipher.key", null, e);
+			throw new APIException("could.not.generate.cipher.key", null);
 		}
 		kgen.init(128); // 192 and 256 bits may not be available
 

@@ -97,11 +97,11 @@ public class Duration {
 		}
 		if (SNOMED_CT_RECURRING_INTERVAL_CODE.equals(code)) {
 			if (frequency == null) {
-				throw new APIException("Duration.error.frequency.null", (Object[]) null);
+				throw new APIException("Duration.error.frequency.null");
 			}
 			return addSeconds(startDate, (int) (this.duration * SECONDS_PER_DAY / frequency.getFrequencyPerDay()));
 		} else {
-			throw new APIException("Duration.unknown.code", new Object[] { code });
+			throw new APIException("Duration.unknown.code");
 		}
 	}
 	

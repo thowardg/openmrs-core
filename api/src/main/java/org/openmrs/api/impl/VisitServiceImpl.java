@@ -219,7 +219,7 @@ public class VisitServiceImpl extends BaseOpenmrsService implements VisitService
 			return;
 		}
 		if (!Context.getEncounterService().getEncountersByVisit(visit, true).isEmpty()) {
-			throw new APIException("Visit.purge.inUse", (Object[]) null);
+			throw new APIException("Visit.purge.inUse");
 		}
 		dao.deleteVisit(visit);
 	}

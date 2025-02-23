@@ -9,8 +9,6 @@
  */
 package org.openmrs.api;
 
-import org.openmrs.api.context.Context;
-
 /**
  * Represents often fatal errors that occur within the API infrastructure. All service methods
  * should be marked as possibly throwing this exception. The preferred methods to use in this
@@ -59,25 +57,4 @@ public class APIException extends RuntimeException {
 		super(cause);
 	}
 	
-	/**
-	 * Constructor to give the end user a helpful message that relates to why this error occurred.
-	 * 
-	 * @param messageKey message code to retrieve
-	 * @param parameters message parameters
-	 */
-	public APIException(String messageKey, Object[] parameters) {
-		super(Context.getMessageSourceService().getMessage(messageKey, parameters, Context.getLocale()));
-	}
-	
-	/**
-	 * Constructor to give the end user a helpful message and to also propagate the parent
-	 * error exception message..
-	 *
-	 * @param messageKey message code to retrieve
-	 * @param parameters message parameters
-	 * @param cause the parent exception cause that this APIException is wrapping around   
-	 */
-	public APIException(String messageKey, Object[] parameters, Throwable cause) {
-		super(Context.getMessageSourceService().getMessage(messageKey, parameters, Context.getLocale()), cause);
-	}
 }

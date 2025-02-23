@@ -91,11 +91,11 @@ public class ObsServiceImpl extends BaseOpenmrsService implements ObsService {
 	@Override
 	public Obs saveObs(Obs obs, String changeMessage) throws APIException {
 		if(obs == null){
-			throw new APIException("Obs.error.cannot.be.null", (Object[]) null);
+			throw new APIException("Obs.error.cannot.be.null");
 		}
 
 		if(obs.getId() != null && changeMessage == null){
-			throw new APIException("Obs.error.ChangeMessage.required", (Object[]) null);
+			throw new APIException("Obs.error.ChangeMessage.required");
 		}
 
 		handleExistingObsWithComplexConcept(obs);
@@ -253,7 +253,7 @@ public class ObsServiceImpl extends BaseOpenmrsService implements ObsService {
 			if (null != handler) {
 				handler.saveObs(obs);
 			} else {
-				throw new APIException("unknown.handler", new Object[] {concept});
+				throw new APIException("unknown.handler");
 			}
 		}
 	}
@@ -306,11 +306,11 @@ public class ObsServiceImpl extends BaseOpenmrsService implements ObsService {
 	@Override
 	public void purgeObs(Obs obs, boolean cascade) throws APIException {
 		if (!purgeComplexData(obs)) {
-			throw new APIException("Obs.error.unable.purge.complex.data", new Object[] { obs });
+			throw new APIException("Obs.error.unable.purge.complex.data");
 		}
 		
 		if (cascade) {
-			throw new APIException("Obs.error.cascading.purge.not.implemented", (Object[]) null);
+			throw new APIException("Obs.error.cascading.purge.not.implemented");
 			// TODO delete any related objects here before deleting the obs
 			// obsGroups objects?
 			// orders?
@@ -573,14 +573,14 @@ public class ObsServiceImpl extends BaseOpenmrsService implements ObsService {
 			// Get the ConceptComplex from the ConceptService then return its
 			// handler.
 			if (obs.getConcept() == null) {
-				throw new APIException("Obs.error.unable.get.handler", new Object[] { obs });
+				throw new APIException("Obs.error.unable.get.handler");
 			}
 			
 			String handlerString = Context.getConceptService().getConceptComplex(obs.getConcept().getConceptId())
 			        .getHandler();
 			
 			if (handlerString == null) {
-				throw new APIException("Obs.error.unable.get.handler.and.concept", new Object[] { obs, obs.getConcept() });
+				throw new APIException("Obs.error.unable.get.handler.and.concept");
 			}
 			
 			return this.getHandler(handlerString);
@@ -653,7 +653,7 @@ public class ObsServiceImpl extends BaseOpenmrsService implements ObsService {
 			
 		}
 		catch (Exception e) {
-			throw new APIException("unable.load.and.instantiate.handler", null, e);
+			throw new APIException("unable.load.and.instantiate.handler", null);
 		}
 	}
 	

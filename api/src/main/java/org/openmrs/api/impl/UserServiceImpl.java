@@ -103,7 +103,7 @@ public class UserServiceImpl extends BaseOpenmrsService implements UserService {
 		
 		// if a password wasn't supplied, throw an error
 		if (password == null || password.length() < 1) {
-			throw new APIException("User.creating.password.required", (Object[]) null);
+			throw new APIException("User.creating.password.required");
 		}
 		
 		if (hasDuplicateUsername(user)) {
@@ -245,7 +245,7 @@ public class UserServiceImpl extends BaseOpenmrsService implements UserService {
 	@Override
 	public void purgePrivilege(Privilege privilege) throws APIException {
 		if (OpenmrsUtil.getCorePrivileges().keySet().contains(privilege.getPrivilege())) {
-			throw new APIException("Privilege.cannot.delete.core", (Object[]) null);
+			throw new APIException("Privilege.cannot.delete.core");
 		}
 		
 		dao.deletePrivilege(privilege);
@@ -287,7 +287,7 @@ public class UserServiceImpl extends BaseOpenmrsService implements UserService {
 		}
 		
 		if (OpenmrsUtil.getCoreRoles().keySet().contains(role.getRole())) {
-			throw new APIException("Role.cannot.delete.core", (Object[]) null);
+			throw new APIException("Role.cannot.delete.core");
 		}
 		
 		if (role.hasChildRoles()) {
@@ -305,7 +305,7 @@ public class UserServiceImpl extends BaseOpenmrsService implements UserService {
 		// make sure one of the parents of this role isn't itself...this would
 		// cause an infinite loop
 		if (role.getAllParentRoles().contains(role)) {
-			throw new APIException("Role.cannot.inherit.descendant", (Object[]) null);
+			throw new APIException("Role.cannot.inherit.descendant");
 		}
 		
 		checkPrivileges(role);
@@ -393,16 +393,16 @@ public class UserServiceImpl extends BaseOpenmrsService implements UserService {
 			.map(Role::getPrivileges).filter(Objects::nonNull).flatMap(Collection::stream)
 			.map(Privilege::getPrivilege).filter(p -> !Context.hasPrivilege(p)).sorted().collect(Collectors.toList());
 		if (requiredPrivs.size() == 1) {
-			throw new APIException("User.you.must.have.privilege", new Object[] { requiredPrivs.get(0) });
+			throw new APIException("User.you.must.have.privilege");
 		} else if (requiredPrivs.size() > 1) {
-			throw new APIException("User.you.must.have.privileges", new Object[] { String.join(", ", requiredPrivs) });
+			throw new APIException("User.you.must.have.privileges");
 		}
 	}
 	
 	private void checkSuperUserPrivilege(Role r) {
 		if (r.getRole().equals(RoleConstants.SUPERUSER)
 			&& !Context.hasPrivilege(PrivilegeConstants.ASSIGN_SYSTEM_DEVELOPER_ROLE)) {
-			throw new APIException("User.you.must.have.role", new Object[] { RoleConstants.SUPERUSER });
+			throw new APIException("User.you.must.have.role");
 		}
 	}
 	
@@ -413,7 +413,7 @@ public class UserServiceImpl extends BaseOpenmrsService implements UserService {
 	public User setUserProperty(User user, String key, String value) {
 		if (user != null) {
 			if (!Context.hasPrivilege(PrivilegeConstants.EDIT_USERS) && !user.equals(Context.getAuthenticatedUser())) {
-				throw new APIException("you.are.not.authorized.change.properties", new Object[] { user.getUserId() });
+				throw new APIException("you.are.not.authorized.change.properties");
 			}
 			
 			user.setUserProperty(key, value);
@@ -440,7 +440,7 @@ public class UserServiceImpl extends BaseOpenmrsService implements UserService {
 			// the user being edited is not the current user, throw an
 			// exception
 			if (!Context.hasPrivilege(PrivilegeConstants.EDIT_USERS) && !user.equals(Context.getAuthenticatedUser())) {
-				throw new APIException("you.are.not.authorized.change.properties", new Object[] { user.getUserId() });
+				throw new APIException("you.are.not.authorized.change.properties");
 			}
 			
 			user.removeUserProperty(key);
@@ -505,7 +505,7 @@ public class UserServiceImpl extends BaseOpenmrsService implements UserService {
 	@Override
 	public void purgeUser(User user, boolean cascade) throws APIException {
 		if (cascade) {
-			throw new APIException("cascade.do.not.think", (Object[]) null);
+			throw new APIException("cascade.do.not.think");
 		}
 		
 		dao.deleteUser(user);
@@ -523,7 +523,7 @@ public class UserServiceImpl extends BaseOpenmrsService implements UserService {
 				.distinct().collect(Collectors.joining(", ")))
 			.ifPresent(missing -> {
 				if (StringUtils.isNotBlank(missing)) {
-					throw new APIException("Role.you.must.have.privileges", new Object[] { missing });
+					throw new APIException("Role.you.must.have.privileges");
 				}
 			});
 	}
@@ -611,7 +611,7 @@ public class UserServiceImpl extends BaseOpenmrsService implements UserService {
 	public User saveUserProperty(String key, String value) {
 		User user = Context.getAuthenticatedUser();
 		if (user == null) {
-			throw new APIException("no.authenticated.user.found", (Object[]) null);
+			throw new APIException("no.authenticated.user.found");
 		}
 		user.setUserProperty(key, value);
 		return dao.saveUser(user, null);
@@ -621,7 +621,7 @@ public class UserServiceImpl extends BaseOpenmrsService implements UserService {
 	public User saveUserProperties(Map<String, String> properties) {
 		User user = Context.getAuthenticatedUser();
 		if (user == null) {
-			throw new APIException("no.authenticated.user.found", (Object[]) null);
+			throw new APIException("no.authenticated.user.found");
 		}
 		user.getUserProperties().clear();
 		for (Map.Entry<String, String> entry : properties.entrySet()) {
@@ -638,18 +638,18 @@ public class UserServiceImpl extends BaseOpenmrsService implements UserService {
 	@Logging(ignoredArgumentIndexes = { 1, 2 })
 	public void changePassword(User user, String oldPassword, String newPassword) throws APIException {
 		if (user.getUserId() == null) {
-			throw new APIException("user.must.exist", (Object[]) null);
+			throw new APIException("user.must.exist");
 		}
 		
 		if (oldPassword == null) {
 			if (!Context.hasPrivilege(PrivilegeConstants.EDIT_USER_PASSWORDS)) {
-				throw new APIException("null.old.password.privilege.required", (Object[]) null);
+				throw new APIException("null.old.password.privilege.required");
 			}
 		} else if (!dao.getLoginCredential(user).checkPassword(oldPassword)) {
-			throw new APIException("old.password.not.correct", (Object[]) null);
+			throw new APIException("old.password.not.correct");
 			
 		} else if (oldPassword.equals(newPassword)) {
-			throw new APIException("new.password.equal.to.old", (Object[]) null);
+			throw new APIException("new.password.equal.to.old");
 		}
 		
 		if (("admin".equals(user.getSystemId()) || "admin".equals(user.getUsername())) && Boolean.parseBoolean(
@@ -674,7 +674,7 @@ public class UserServiceImpl extends BaseOpenmrsService implements UserService {
 	public void changePasswordUsingSecretAnswer(String secretAnswer, String pw) throws APIException {
 		User user = Context.getAuthenticatedUser();
 		if (!isSecretAnswer(user, secretAnswer)) {
-			throw new APIException("secret.answer.not.correct", (Object[]) null);
+			throw new APIException("secret.answer.not.correct");
 		}
 		updatePassword(user, pw);
 	}
@@ -702,7 +702,7 @@ public class UserServiceImpl extends BaseOpenmrsService implements UserService {
 			}
 			return user;
 		}
-		throw new APIException("error.usernameOrEmail.notNullOrBlank", (Object[]) null);
+		throw new APIException("error.usernameOrEmail.notNullOrBlank");
 	}
 	
 	/**

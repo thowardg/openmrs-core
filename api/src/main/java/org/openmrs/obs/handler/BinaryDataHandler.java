@@ -122,7 +122,7 @@ public class BinaryDataHandler extends AbstractHandler implements ComplexObsHand
 					OpenmrsUtil.copyFile((InputStream) data, fout);
 				}
 				catch (IOException e) {
-					throw new APIException("Obs.error.unable.convert.complex.data", new Object[] { "input stream" }, e);
+					throw new APIException("Obs.error.unable.convert.complex.data", e);
 				}
 			}
 			
@@ -134,7 +134,7 @@ public class BinaryDataHandler extends AbstractHandler implements ComplexObsHand
 			
 		}
 		catch (IOException ioe) {
-			throw new APIException("Obs.error.trying.write.complex", null, ioe);
+			throw new APIException("Obs.error.trying.write.complex", null);
 		}
 		finally {
 			try {

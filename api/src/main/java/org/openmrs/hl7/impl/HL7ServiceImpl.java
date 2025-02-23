@@ -169,7 +169,7 @@ public class HL7ServiceImpl extends BaseOpenmrsService implements HL7Service {
 	 */
 	@Override
 	public HL7Source retireHL7Source(HL7Source hl7Source) throws APIException {
-		throw new APIException("general.not.yet.implemented", (Object[]) null);
+		throw new APIException("general.not.yet.implemented");
 	}
 	
 	/**
@@ -813,7 +813,7 @@ public class HL7ServiceImpl extends BaseOpenmrsService implements HL7Service {
 	@Transactional(readOnly = true)
 	public HL7InArchive getHL7InArchiveByUuid(String uuid) throws APIException {
 		if (Hl7InArchivesMigrateThread.isActive()) {
-			throw new APIException("Hl7Service.cannot.fetch.archives", (Object[]) null);
+			throw new APIException("Hl7Service.cannot.fetch.archives");
 		}
 		return dao.getHL7InArchiveByUuid(uuid);
 	}
@@ -856,7 +856,7 @@ public class HL7ServiceImpl extends BaseOpenmrsService implements HL7Service {
 		for (Map.Entry<String, Application> entry : handlers.entrySet()) {
 			String messageName = entry.getKey();
 			if (!messageName.contains("_")) {
-				throw new APIException("Hl7Service.invalid.messageName", (Object[]) null);
+				throw new APIException("Hl7Service.invalid.messageName");
 			}
 			
 			String messageType = messageName.split("_")[0];
@@ -1044,10 +1044,10 @@ public class HL7ServiceImpl extends BaseOpenmrsService implements HL7Service {
 			archive.setLoaded(true);
 		}
 		catch (URISyntaxException e) {
-			throw new APIException("Hl7Service.malformed.archive.location", new Object[] { archive.getHL7Data() }, e);
+			throw new APIException("Hl7Service.malformed.archive.location", e);
 		}
 		catch (IOException e) {
-			throw new APIException("Hl7Service.unable.convert.archive", new Object[] { archive.getHL7Data() }, e);
+			throw new APIException("Hl7Service.unable.convert.archive", e);
 		}
 	}
 	
@@ -1096,11 +1096,11 @@ public class HL7ServiceImpl extends BaseOpenmrsService implements HL7Service {
 	 */
 	private void migrateHL7InArchive(HL7InArchive archive) throws APIException {
 		if (archive == null) {
-			throw new APIException("Hl7Service.migrate.null.archive", (Object[]) null);
+			throw new APIException("Hl7Service.migrate.null.archive");
 		}
 		
 		if (!OpenmrsUtil.nullSafeEquals(archive.getMessageState(), HL7Constants.HL7_STATUS_PROCESSED)) {
-			throw new APIException("Hl7Service.migrate.archive.state", (Object[]) null);
+			throw new APIException("Hl7Service.migrate.archive.state");
 		}
 		
 		try {
@@ -1110,7 +1110,7 @@ public class HL7ServiceImpl extends BaseOpenmrsService implements HL7Service {
 			saveHL7InArchive(archive);
 		}
 		catch (APIException e) {
-			throw new APIException("Hl7Service.migrate.archive", null, e);
+			throw new APIException(e);
 		}
 		
 	}
@@ -1164,7 +1164,7 @@ public class HL7ServiceImpl extends BaseOpenmrsService implements HL7Service {
 			if (writer.checkError()) {
 				log.warn("An Error occured while writing hl7 archive with id '" + hl7InArchive.getHL7InArchiveId()
 				        + "' to the file system");
-				throw new APIException("Hl7Service.write.no.error", (Object[]) null);
+				throw new APIException("Hl7Service.write.no.error");
 			}
 			
 			// hand back the URI for the file
@@ -1175,7 +1175,7 @@ public class HL7ServiceImpl extends BaseOpenmrsService implements HL7Service {
 			log
 			        .warn("Failed to write hl7 archive with id '" + hl7InArchive.getHL7InArchiveId()
 			                + "' to the file system ", e);
-			throw new APIException("Hl7Service.write.error", null, e);
+			throw new APIException("Hl7Service.write.error", null);
 			
 		}
 		finally {

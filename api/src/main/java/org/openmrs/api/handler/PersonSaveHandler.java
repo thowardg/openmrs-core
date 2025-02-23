@@ -80,7 +80,7 @@ public class PersonSaveHandler implements SaveHandler<Person> {
 		if (person.getPersonVoided()) {
 			
 			if (!StringUtils.hasLength(person.getPersonVoidReason())) {
-				throw new APIException("Person.voided.bit", new Object[] { person });
+				throw new APIException("Person.voided.bit");
 			}
 			
 			if (person.getPersonVoidedBy() == null) {

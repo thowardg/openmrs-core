@@ -78,7 +78,7 @@ public final class Daemon {
 	        final AbstractRefreshableApplicationContext applicationContext) throws ModuleException {
 		Class<?> callerClass = new OpenmrsSecurityManager().getCallerClass(0);
 		if (callerClass != Daemon.class && callerClass != ModuleFactory.class) {
-			throw new APIException("Module.factory.only", new Object[] { callerClass.getName() });
+			throw new APIException("Module.factory.only");
 		}
 		
 		Future<Module> moduleStartFuture = runInDaemonThreadInternal(() -> ModuleFactory.startModuleInternal(module, isOpenmrsStartup, applicationContext));
@@ -117,13 +117,13 @@ public final class Daemon {
 		// quick check to make sure we're only being called by ourselves
 		Class<?> callerClass = new OpenmrsSecurityManager().getCallerClass(0);
 		if (!ContextDAO.class.isAssignableFrom(callerClass)) {
-			throw new APIException("Context.DAO.only", new Object[] { callerClass.getName() });
+			throw new APIException("Context.DAO.only");
 		}
 
 		// create a new thread and execute that task in it
 		Future<User> userFuture = runInDaemonThreadInternal(() -> {
 			if ((user.getId() != null && Context.getUserService().getUser(user.getId()) != null) || Context.getUserService().getUserByUuid(user.getUuid()) != null || Context.getUserService().getUserByUsername(user.getUsername()) != null || (user.getEmail() != null && Context.getUserService().getUserByUsernameOrEmail(user.getEmail()) != null) ) {
-				throw new APIException("User.creating.already.exists", new Object[] { user.getDisplayString() });
+				throw new APIException("User.creating.already.exists");
 			}
 
 			if (!CollectionUtils.isEmpty(roleNames)) {
@@ -165,7 +165,7 @@ public final class Daemon {
 		// quick check to make sure we're only being called by ourselves
 		Class<?> callerClass = new OpenmrsSecurityManager().getCallerClass(0);
 		if (!TimerSchedulerTask.class.isAssignableFrom(callerClass)) {
-			throw new APIException("Scheduler.timer.task.only", new Object[] { callerClass.getName() });
+			throw new APIException("Scheduler.timer.task.only");
 		}
 		
 		Future<?> scheduleTaskFuture = runInDaemonThreadInternal(() -> TimerSchedulerTask.execute(task));
@@ -305,7 +305,7 @@ public final class Daemon {
 	public static void runStartupForService(final OpenmrsService service) throws ModuleException {
 		Class<?> callerClass = new OpenmrsSecurityManager().getCallerClass(0);
 		if (callerClass != ServiceContext.class) {
-			throw new APIException("Service.context.only", new Object[] { callerClass.getName() });
+			throw new APIException("Service.context.only");
 		}
 		
 		Future<?> future = runInDaemonThreadInternal(service::onStartup);

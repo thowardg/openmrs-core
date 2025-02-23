@@ -31,7 +31,7 @@ public class OpenmrsSecurityManager extends SecurityManager {
 	 */
 	public Class<?> getCallerClass(int callStackDepth) {
 		if (callStackDepth < 0) {
-			throw new APIException("call.stack.depth.error", (Object[]) null);
+			throw new APIException("call.stack.depth.error");
 		}
 		
 		//SecurityManager may appear more than once in classContext

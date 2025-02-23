@@ -201,7 +201,7 @@ public class PersonServiceImpl extends BaseOpenmrsService implements PersonServi
 	        throws APIException {
 		checkIfPersonAttributeTypesAreLocked();
 		if (retiredReason == null || retiredReason.length() < 1) {
-			throw new APIException("Person.retiring.reason.required", (Object[]) null);
+			throw new APIException("Person.retiring.reason.required");
 		}
 		
 		type.setRetired(true);
@@ -476,7 +476,7 @@ public class PersonServiceImpl extends BaseOpenmrsService implements PersonServi
 	@Override
 	public Relationship saveRelationship(Relationship relationship) throws APIException {
 		if (relationship.getPersonA().equals(relationship.getPersonB())) {
-			throw new APIException("Person.cannot.same", (Object[]) null);
+			throw new APIException("Person.cannot.same");
 		}
 		
 		return dao.saveRelationship(relationship);
@@ -552,8 +552,7 @@ public class PersonServiceImpl extends BaseOpenmrsService implements PersonServi
 	@Override
 	public RelationshipType saveRelationshipType(RelationshipType relationshipType) throws APIException {
 		if (StringUtils.isBlank(relationshipType.getDescription())) {
-			throw new APIException("error.required",
-			        new Object[] { Context.getMessageSourceService().getMessage("general.description") });
+			throw new APIException("error.required");
 		}
 		
 		return dao.saveRelationshipType(relationshipType);
@@ -815,7 +814,7 @@ public class PersonServiceImpl extends BaseOpenmrsService implements PersonServi
 	public PersonMergeLog savePersonMergeLog(PersonMergeLog personMergeLog) throws SerializationException, APIException {
 		//verify required fields
 		if (Context.getSerializationService().getDefaultSerializer() == null) {
-			throw new APIException("serializer.default.not.found", (Object[]) null);
+			throw new APIException("serializer.default.not.found");
 		}
 		log.debug("Auditing merging of non-preferred person " + personMergeLog.getLoser().getUuid()
 		        + " with preferred person " + personMergeLog.getWinner().getId());
@@ -836,7 +835,7 @@ public class PersonServiceImpl extends BaseOpenmrsService implements PersonServi
 	public PersonMergeLog getPersonMergeLogByUuid(String uuid, boolean deserialize)
 	        throws SerializationException, APIException {
 		if (uuid == null) {
-			throw new APIException("uuid.cannot.null", (Object[]) null);
+			throw new APIException("uuid.cannot.null");
 		}
 		PersonMergeLog personMergeLog = dao.getPersonMergeLogByUuid(uuid);
 		//deserialize if requested
@@ -944,7 +943,7 @@ public class PersonServiceImpl extends BaseOpenmrsService implements PersonServi
 	@Override
 	public RelationshipType retireRelationshipType(RelationshipType type, String retiredReason) throws APIException {
 		if (retiredReason == null || retiredReason.length() < 1) {
-			throw new APIException("Relationship.retiring.reason.required", (Object[]) null);
+			throw new APIException("Relationship.retiring.reason.required");
 		}
 		
 		type.setRetired(true);

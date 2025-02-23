@@ -375,9 +375,9 @@ public class Concept extends BaseOpenmrsObject implements Auditable, Retireable,
 	public void setPreferredName(ConceptName preferredName) {
 		
 		if (preferredName == null || preferredName.getVoided() || preferredName.isIndexTerm()) {
-			throw new APIException("Concept.error.preferredName.null", (Object[]) null);
+			throw new APIException("Concept.error.preferredName.null");
 		} else if (preferredName.getLocale() == null) {
-			throw new APIException(CONCEPT_NAME_LOCALE_NULL, (Object[]) null);
+			throw new APIException(CONCEPT_NAME_LOCALE_NULL);
 		}
 		
 		//first revert the current preferred name(if any) from being preferred
@@ -797,9 +797,9 @@ public class Concept extends BaseOpenmrsObject implements Auditable, Retireable,
 	 */
 	public void setFullySpecifiedName(ConceptName fullySpecifiedName) {
 		if (fullySpecifiedName == null || fullySpecifiedName.getLocale() == null) {
-			throw new APIException(CONCEPT_NAME_LOCALE_NULL, (Object[]) null);
+			throw new APIException(CONCEPT_NAME_LOCALE_NULL);
 		} else if (fullySpecifiedName.getVoided()) {
-			throw new APIException("Concept.error.fullySpecifiedName.null", (Object[]) null);
+			throw new APIException("Concept.error.fullySpecifiedName.null");
 		}
 		
 		ConceptName oldFullySpecifiedName = getFullySpecifiedName(fullySpecifiedName.getLocale());
@@ -826,7 +826,7 @@ public class Concept extends BaseOpenmrsObject implements Auditable, Retireable,
 	public void setShortName(ConceptName shortName) {
 		if (shortName != null) {
 			if (shortName.getLocale() == null) {
-				throw new APIException(CONCEPT_NAME_LOCALE_NULL, (Object[]) null);
+				throw new APIException(CONCEPT_NAME_LOCALE_NULL);
 			}
 			ConceptName oldShortName = getShortNameInLocale(shortName.getLocale());
 			if (oldShortName != null) {
@@ -839,7 +839,7 @@ public class Concept extends BaseOpenmrsObject implements Auditable, Retireable,
 				addName(shortName);
 			}
 		} else {
-			throw new APIException("Concept.error.shortName.null", (Object[]) null);
+			throw new APIException("Concept.error.shortName.null");
 		}
 	}
 	

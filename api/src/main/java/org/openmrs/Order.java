@@ -512,7 +512,7 @@ public class Order extends BaseCustomizableData<OrderAttribute> implements FormR
 	 */
 	public boolean isDiscontinued(Date aCheckDate) {
 		if (dateStopped != null && autoExpireDate != null && dateStopped.after(autoExpireDate)) {
-			throw new APIException("Order.error.invalidDateStoppedAndAutoExpireDate", (Object[]) null);
+			throw new APIException("Order.error.invalidDateStoppedAndAutoExpireDate");
 		}
 		if (getVoided()) {
 			return false;
@@ -552,7 +552,7 @@ public class Order extends BaseCustomizableData<OrderAttribute> implements FormR
 	 */
 	public boolean isExpired(Date aCheckDate) {
 		if (dateStopped != null && autoExpireDate != null && dateStopped.after(autoExpireDate)) {
-			throw new APIException("Order.error.invalidDateStoppedAndAutoExpireDate", (Object[]) null);
+			throw new APIException("Order.error.invalidDateStoppedAndAutoExpireDate");
 		}
 		if (getVoided()) {
 			return false;

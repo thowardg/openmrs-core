@@ -138,14 +138,14 @@ public class TextHandler extends NonBinaryAbstractHandler implements ComplexObsH
 					tempRd.close();
 				}
 				catch (IOException e) {
-					throw new APIException("Obs.error.unable.convert.complex.data", new Object[] { "Reader" }, e);
+					throw new APIException("Obs.error.unable.convert.complex.data", e);
 				}
 			} else if (InputStream.class.isAssignableFrom(data.getClass())) {
 				try {
 					IOUtils.copy((InputStream) data, fout);
 				}
 				catch (IOException e) {
-					throw new APIException("Obs.error.unable.convert.complex.data", new Object[] { "input stream" }, e);
+					throw new APIException("Obs.error.unable.convert.complex.data", e);
 				}
 			}
 			
@@ -157,7 +157,7 @@ public class TextHandler extends NonBinaryAbstractHandler implements ComplexObsH
 			
 		}
 		catch (IOException ioe) {
-			throw new APIException("Obs.error.trying.write.complex", null, ioe);
+			throw new APIException("Obs.error.trying.write.complex", null);
 		}
 		finally {
 			try {

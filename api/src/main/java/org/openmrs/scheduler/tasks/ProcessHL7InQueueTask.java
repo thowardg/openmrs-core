@@ -52,7 +52,7 @@ public class ProcessHL7InQueueTask extends AbstractTask {
 		}
 		catch (HL7Exception e) {
 			log.error("Error running hl7 in queue task", e);
-			throw new APIException("Hl7inQueue.error.running", null, e);
+			throw new APIException("Hl7inQueue.error.running", null);
 		}
 		finally {
 			Context.closeSession();

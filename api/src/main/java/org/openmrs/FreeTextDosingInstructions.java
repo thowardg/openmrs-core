@@ -45,8 +45,7 @@ public class FreeTextDosingInstructions extends BaseDosingInstructions {
 	@Override
 	public DosingInstructions getDosingInstructions(DrugOrder order) {
 		if (!order.getDosingType().equals(this.getClass())) {
-			throw new APIException("DrugOrder.error.dosingTypeIsMismatched", new Object[] { this.getClass(),
-			        order.getDosingType() });
+			throw new APIException("DrugOrder.error.dosingTypeIsMismatched");
 		}
 		FreeTextDosingInstructions freeTextDosingInstructions = new FreeTextDosingInstructions();
 		freeTextDosingInstructions.setInstructions(order.getDosingInstructions());

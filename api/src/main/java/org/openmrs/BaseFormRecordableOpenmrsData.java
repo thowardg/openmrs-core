@@ -114,10 +114,10 @@ public abstract class BaseFormRecordableOpenmrsData extends BaseChangeableOpenmr
 		}
 
 		if (nsAndPathTemp.length() > FORM_NAMESPACE_PATH_MAX_LENGTH) {
-			throw new APIException("BaseFormRecordableOpenmrsData.namespaceAndPathTooLong", (Object[]) null);
+			throw new APIException("BaseFormRecordableOpenmrsData.namespaceAndPathTooLong");
 		}
 		if (StringUtils.countMatches(nsAndPathTemp, FORM_NAMESPACE_PATH_SEPARATOR) > 1) {
-			throw new APIException("BaseFormRecordableOpenmrsData.namespaceAndPathNotContainSeparator", (Object[]) null);
+			throw new APIException("BaseFormRecordableOpenmrsData.namespaceAndPathNotContainSeparator");
 		}
 
 		return nsAndPathTemp;

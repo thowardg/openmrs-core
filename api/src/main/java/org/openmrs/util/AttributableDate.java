@@ -102,7 +102,7 @@ public class AttributableDate extends Date implements Attributable<AttributableD
 			catch (ParseException e2) {
 				// if we can't parse it as the normalized string or as the current
 				// user's date format, bail out
-				throw new APIException("unable.parse.string.as.date", new Object[] { s });
+				throw new APIException("unable.parse.string.as.date");
 			}
 		}
 	}

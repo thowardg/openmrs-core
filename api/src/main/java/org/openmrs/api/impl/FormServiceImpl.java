@@ -445,7 +445,7 @@ public class FormServiceImpl extends BaseOpenmrsService implements FormService {
 	@Override
 	public void purgeField(Field field, boolean cascade) throws APIException {
 		if (cascade) {
-			throw new APIException("general.not.yet.implemented", (Object[]) null);
+			throw new APIException("general.not.yet.implemented");
 		} else {
 			dao.deleteField(field);
 		}
@@ -466,7 +466,7 @@ public class FormServiceImpl extends BaseOpenmrsService implements FormService {
 	@Override
 	public void purgeForm(Form form, boolean cascade) throws APIException {
 		if (cascade) {
-			throw new APIException("general.not.yet.implemented", (Object[]) null);
+			throw new APIException("general.not.yet.implemented");
 		}
 		
 		// remove resources
@@ -523,7 +523,7 @@ public class FormServiceImpl extends BaseOpenmrsService implements FormService {
 				if (ff.getForm() == null) {
 					ff.setForm(form);
 				} else if (!ff.getForm().equals(form)) {
-					throw new APIException("Form.contains.FormField.error", new Object[] { ff });
+					throw new APIException("Form.contains.FormField.error");
 				}
 			}
 		}

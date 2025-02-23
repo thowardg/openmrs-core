@@ -107,7 +107,7 @@ public class SerializationServiceImpl extends BaseOpenmrsService implements Seri
 		// Get appropriate OpenmrsSerializer implementation
 		OpenmrsSerializer serializer = getSerializer(serializerClass);
 		if (serializer == null) {
-			throw new APIException("serializer.not.found", new Object[] { serializerClass });
+			throw new APIException("serializer.not.found");
 		}
 		
 		// Attempt to Deserialize the object

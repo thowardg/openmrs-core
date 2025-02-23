@@ -819,7 +819,7 @@ public class ConceptServiceImpl extends BaseOpenmrsService implements ConceptSer
 		}
 		
 		if (mappedConcept == null) {
-			throw new APIException("Concept.mapped.illegal", (Object[]) null);
+			throw new APIException("Concept.mapped.illegal");
 		}
 		
 		ConceptName conceptName = null;
@@ -1197,7 +1197,7 @@ public class ConceptServiceImpl extends BaseOpenmrsService implements ConceptSer
 		// sorted to the front of the list, we can test if there is more than one retired concept
 		// by testing if the second concept in the list is retired or not
 		else if (concepts.size() > 1 && !concepts.get(1).getRetired()) {
-			throw new APIException("Concept.error.multiple.non.retired", new Object[] { code, sourceName });
+			throw new APIException("Concept.error.multiple.non.retired");
 		} else {
 			return concepts.get(0);
 		}
@@ -1410,7 +1410,7 @@ public class ConceptServiceImpl extends BaseOpenmrsService implements ConceptSer
 	public void convertBooleanConceptToCoded(Concept conceptToChange) throws APIException {
 		if (conceptToChange != null) {
 			if (!conceptToChange.getDatatype().isBoolean()) {
-				throw new APIException("Concept.datatype.invalid", (Object[]) null);
+				throw new APIException("Concept.datatype.invalid");
 			}
 			
 			conceptToChange.setDatatype(getConceptDatatypeByName("Coded"));
@@ -1720,7 +1720,7 @@ public class ConceptServiceImpl extends BaseOpenmrsService implements ConceptSer
 	@Override
 	public void purgeConceptMapType(ConceptMapType conceptMapType) throws APIException {
 		if (dao.isConceptMapTypeInUse(conceptMapType)) {
-			throw new APIException("ConceptMapType.inUse", (Object[]) null);
+			throw new APIException("ConceptMapType.inUse");
 		}
 		dao.deleteConceptMapType(conceptMapType);
 	}
@@ -1831,7 +1831,7 @@ public class ConceptServiceImpl extends BaseOpenmrsService implements ConceptSer
 	@CacheEvict(value = CONCEPT_IDS_BY_MAPPING_CACHE_NAME, allEntries = true)
 	public void purgeConceptReferenceTerm(ConceptReferenceTerm conceptReferenceTerm) throws APIException {
 		if (dao.isConceptReferenceTermInUse(conceptReferenceTerm)) {
-			throw new APIException("ConceptRefereceTerm.inUse", (Object[]) null);
+			throw new APIException("ConceptRefereceTerm.inUse");
 		}
 		dao.deleteConceptReferenceTerm(conceptReferenceTerm);
 	}
@@ -1922,7 +1922,7 @@ public class ConceptServiceImpl extends BaseOpenmrsService implements ConceptSer
 		Collection<ConceptMapType> tmpWithAnyOfTheseTypes = withAnyOfTheseTypes == null ? Collections.emptyList() : withAnyOfTheseTypes;
 
 		if (conceptSource == null) {
-			throw new APIException("ConceptSource.is.required", (Object[]) null);
+			throw new APIException("ConceptSource.is.required");
 		}
 
 		return dao.getDrugsByMapping(code, conceptSource, tmpWithAnyOfTheseTypes, includeRetired);
@@ -1939,7 +1939,7 @@ public class ConceptServiceImpl extends BaseOpenmrsService implements ConceptSer
 				? Collections.emptyList() : withAnyOfTheseTypesOrOrderOfPreference;
 
 		if (conceptSource == null) {
-			throw new APIException("ConceptSource.is.required", (Object[]) null);
+			throw new APIException("ConceptSource.is.required");
 		}
 
 		return dao.getDrugByMapping(code, conceptSource, tmpWithAnyOfTheseTypesOrOrderOfPreference);

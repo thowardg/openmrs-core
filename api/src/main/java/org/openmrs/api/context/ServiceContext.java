@@ -737,8 +737,7 @@ public class ServiceContext implements ApplicationContextAware {
 				log.debug("Service: {} set successfully", cls);
 			}
 			catch (Exception e) {
-				throw new APIException("service.unable.create.proxy.factory", new Object[] { classInstance.getClass()
-				        .getName() }, e);
+				throw new APIException("service.unable.create.proxy.factory", e);
 			}
 			
 		}

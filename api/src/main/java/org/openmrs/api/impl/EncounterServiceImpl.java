@@ -222,8 +222,7 @@ public class EncounterServiceImpl extends BaseOpenmrsService implements Encounte
 	 */
 	private void failIfDeniedToEdit(Encounter encounter) throws APIException {
 		if (!canEditEncounter(encounter, null)) {
-			throw new APIException("Encounter.error.privilege.required.edit", new Object[] { encounter.getEncounterType()
-			        .getEditPrivilege() });
+			throw new APIException("Encounter.error.privilege.required.edit");
 		}
 	}
 	
@@ -309,8 +308,7 @@ public class EncounterServiceImpl extends BaseOpenmrsService implements Encounte
 		} else if (canViewEncounter(encounter, null)) {
 			return encounter;
 		} else {
-			throw new APIException("Encounter.error.privilege.required.view", new Object[] { encounter.getEncounterType()
-			        .getViewPrivilege() });
+			throw new APIException("Encounter.error.privilege.required.view");
 		}
 	}
 	
@@ -410,8 +408,7 @@ public class EncounterServiceImpl extends BaseOpenmrsService implements Encounte
 		
 		// if authenticated user is not supposed to edit encounter of certain type
 		if (!canEditEncounter(encounter, null)) {
-			throw new APIException("Encounter.error.privilege.required.void", new Object[] { encounter.getEncounterType()
-			        .getEditPrivilege() });
+			throw new APIException("Encounter.error.privilege.required.void");
 		}
 		
 		if (reason == null) {
@@ -452,8 +449,7 @@ public class EncounterServiceImpl extends BaseOpenmrsService implements Encounte
 		
 		// if authenticated user is not supposed to edit encounter of certain type
 		if (!canEditEncounter(encounter, null)) {
-			throw new APIException("Encounter.error.privilege.required.unvoid", new Object[] { encounter.getEncounterType()
-			        .getEditPrivilege() });
+			throw new APIException("Encounter.error.privilege.required.unvoid");
 		}
 		
 		String voidReason = encounter.getVoidReason();
@@ -490,8 +486,7 @@ public class EncounterServiceImpl extends BaseOpenmrsService implements Encounte
 	public void purgeEncounter(Encounter encounter) throws APIException {
 		// if authenticated user is not supposed to edit encounter of certain type
 		if (!canEditEncounter(encounter, null)) {
-			throw new APIException("Encounter.error.privilege.required.purge", new Object[] { encounter.getEncounterType()
-			        .getEditPrivilege() });
+			throw new APIException("Encounter.error.privilege.required.purge");
 		}
 		dao.deleteEncounter(encounter);
 	}
@@ -504,8 +499,7 @@ public class EncounterServiceImpl extends BaseOpenmrsService implements Encounte
 		
 		// if authenticated user is not supposed to edit encounter of certain type
 		if (!canEditEncounter(encounter, null)) {
-			throw new APIException("Encounter.error.privilege.required.purge", new Object[] { encounter.getEncounterType()
-			        .getEditPrivilege() });
+			throw new APIException("Encounter.error.privilege.required.purge");
 		}
 		
 		if (cascade) {
@@ -729,13 +723,13 @@ public class EncounterServiceImpl extends BaseOpenmrsService implements Encounte
 				instance = OpenmrsClassLoader.getInstance().loadClass(handlerGlobalValue).newInstance();
 			}
 			catch (Exception ex) {
-				throw new APIException("failed.instantiate.assignment.handler", new Object[] { handlerGlobalValue }, ex);
+				throw new APIException("failed.instantiate.assignment.handler", ex);
 			}
 			
 			if (instance instanceof EncounterVisitHandler) {
 				handler = (EncounterVisitHandler) instance;
 			} else {
-				throw new APIException("assignment.handler.should.implement.EncounterVisitHandler", (Object[]) null);
+				throw new APIException("assignment.handler.should.implement.EncounterVisitHandler");
 			}
 		}
 		
